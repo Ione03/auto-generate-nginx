@@ -54,7 +54,25 @@ def create_symlink(file_list):
             # print(tmp)
             # print(os.path.islink(tmp))
             if not os.path.islink(tmp):
-                os.symlink(file_name, tmp)            
+                os.symlink(os.path.join('../', file_name), tmp)            
+
+# def create_symlink2(file_list_path, source, dest):
+#     # get domain list
+#     mlist = get_domain_list(file_list_path) 
+
+#     # current_dir = os.getcwd()
+#     # if not os.path.exists('../../sites-enabled'):
+#     #     os.mkdir('../../sites-enabled')
+
+#     for i in mlist:
+#         if i:   # not empty i
+#             file_name = i.replace('.lombokbaratkab.go.id','')
+#             print('Proses', file_name)
+#             tmp = os.path.join('../../sites-enabled',file_name)
+#             # print(tmp)
+#             # print(os.path.islink(tmp))
+#             if not os.path.islink(tmp):
+#                 os.symlink(file_name, tmp)                            
 
 def help():
     print('')
