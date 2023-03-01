@@ -56,23 +56,24 @@ def create_symlink(file_list):
             if not os.path.islink(tmp):
                 os.symlink(os.path.join('../', file_name), tmp)            
 
-# def create_symlink2(file_list_path, source, dest):
-#     # get domain list
-#     mlist = get_domain_list(file_list_path) 
+# jalankan di sites-enabled, copy dari source code
+def create_symlink2(file_list_path):
+    # get domain list
+    mlist = get_domain_list(file_list_path) 
 
-#     # current_dir = os.getcwd()
-#     # if not os.path.exists('../../sites-enabled'):
-#     #     os.mkdir('../../sites-enabled')
+    # current_dir = os.getcwd()
+    # if not os.path.exists('../../sites-enabled'):
+    #     os.mkdir('../../sites-enabled')
 
-#     for i in mlist:
-#         if i:   # not empty i
-#             file_name = i.replace('.lombokbaratkab.go.id','')
-#             print('Proses', file_name)
-#             tmp = os.path.join('../../sites-enabled',file_name)
-#             # print(tmp)
-#             # print(os.path.islink(tmp))
-#             if not os.path.islink(tmp):
-#                 os.symlink(file_name, tmp)                            
+    for i in mlist:
+        if i:   # not empty i
+            file_name = i.replace('.lombokbaratkab.go.id','')
+            print('Proses', file_name)
+            # tmp = os.path.join(file_name)
+            # print(tmp)
+            # print(os.path.islink(tmp))
+            if not os.path.islink(file_name):
+                os.symlink(os.path.join('../sites-available',file_name), file_name)                            
 
 def help():
     print('')
@@ -107,5 +108,7 @@ if __name__=='__main__':
             print(sys.argv[1], sys.argv[2])        
             create_nginx_conf(sys.argv[1], sys.argv[2])
             print('Done...')
+    elif m_len>=2:        
+        create_symlink2(sys.argv[2])        
     else:
         help()
