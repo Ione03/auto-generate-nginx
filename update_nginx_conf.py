@@ -75,7 +75,7 @@ def create_symlink2(file_list_path):
             
             # hapus target jika sudah ada link
             if os.path.islink(file_name):
-                os.path.delete(file_name)
+                os.remove(file_name)
                 
             # if not os.path.islink(file_name):
             os.symlink(os.path.join('../sites-available',file_name), file_name)                            
