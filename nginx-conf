@@ -1,5 +1,6 @@
 server {
-    listen 80;
+    # listen 80;
+    listen 443;
     
     server_name [__server_name__];
     # return      301 $scheme://[__server_name__]$request_uri;
@@ -18,10 +19,10 @@ server {
     }
 
     # server_names_hash_bucket_size 64;
-    proxy_headers_hash_max_size 512;
-    proxy_headers_hash_bucket_size 128;
+    #proxy_headers_hash_max_size 512;
+    #proxy_headers_hash_bucket_size 128;
 
-    proxy_redirect off;
+    # proxy_redirect off;
 
     # error karena ini 
     client_max_body_size 100M;
