@@ -1,6 +1,6 @@
 server {
-    # listen 80;
-    listen 443;
+    listen 80;
+    # listen 443;
     
     server_name [__server_name__];
     # return      301 $scheme://[__server_name__]$request_uri;
@@ -47,4 +47,3 @@ server {
         }
     }
 }
-
