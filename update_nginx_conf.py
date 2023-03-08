@@ -32,7 +32,7 @@ def create_nginx_conf(file_list, nginx_conf):
             file_name = os.path.join('../', i.replace('.lombokbaratkab.go.id',''))
             print('Proses', i)
             
-            f = open(file_name, "w")
+            f = open(file_name + '.conf', "w")
             tmp = nginx_conf.replace('[__server_name__]', i)
             f.write(tmp)
             f.close()
@@ -68,6 +68,7 @@ def create_symlink2(file_list_path):
     for i in mlist:
         if i:   # not empty i
             file_name = i.replace('.lombokbaratkab.go.id','')
+            file_name = file_name + '.conf'
             print('Proses', file_name)
             # tmp = os.path.join(file_name)
             # print(tmp)
