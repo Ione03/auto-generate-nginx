@@ -1,0 +1,37 @@
+# Auto Create by update_nginx_conf.py
+# Create By Ione
+# Data : 8th March 2023
+# MIT License
+
+<VirtualHost *:80>
+        ServerName www.[__server_name__]
+        Redirect / https://[__server_name__]
+</VirtualHost>
+
+
+<VirtualHost *:80>
+        ServerName [__server_name__]
+        DocumentRoot /var/www/django_opd_release
+
+        Alias /static /var/www/django_opd_release/static
+        <Directory /var/www/django_opd_release/static>
+                Require all granted
+        </Directory>
+
+        Alias /media /home/webopd/media
+        <Directory /home/webopd/media>
+                Require all granted
+         </Directory>
+
+        <Directory /var/www/django_opd_release/django_opd>
+                <Files wsgi.py>
+                        Require all granted
+                </Files>
+        </Directory>
+
+        WSGIDaemonProcess [__server_name__] python-path=/var/www/django_opd_release python-home=/var/www/django_dummy/django_env                
+        WSGIProcessGroup [__server_name__]
+        WSGIScriptAlias / /var/www/django_opd_release/django_opd/wsgi.py
+
+</VirtualHost>
+
