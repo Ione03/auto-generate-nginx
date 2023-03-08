@@ -8,7 +8,6 @@
         Redirect / https://[__server_name__]
 </VirtualHost>
 
-
 <VirtualHost *:80>
         ServerName [__server_name__]
         DocumentRoot /var/www/django_opd_release
@@ -28,10 +27,10 @@
                         Require all granted
                 </Files>
         </Directory>
-
-        WSGIDaemonProcess [__server_name__] python-path=/var/www/django_opd_release python-home=/var/www/django_dummy/django_env                
-        WSGIProcessGroup [__server_name__]
+        
+        WSGIProcessGroup django_opd_daemon
         WSGIScriptAlias / /var/www/django_opd_release/django_opd/wsgi.py
+        WSGIApplicationGroup %{RESOURCE}
 
 </VirtualHost>
 
