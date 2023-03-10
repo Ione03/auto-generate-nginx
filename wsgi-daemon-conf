@@ -1,0 +1,7 @@
+WSGIDaemonProcess django_opd_daemon display-name=%{GROUP} python-path=/var/www/django_opd_release python-home=/var/www/django_dummy/django_env
+# thread dan prosess gunakan nilai default 15 dan 2
+
+WSGIProcessGroup django_opd_daemon
+
+WSGIApplicationGroup %{RESOURCE}
+

@@ -28,9 +28,9 @@
                 </Files>
         </Directory>
         
-        WSGIProcessGroup django_opd_daemon
-        WSGIScriptAlias / /var/www/django_opd_release/django_opd/wsgi.py
-        WSGIApplicationGroup %{RESOURCE}
+        # WSGIProcessGroup django_opd_daemon
+        WSGIScriptAlias / /var/www/django_opd_release/django_opd/wsgi.py process-group=django_opd_daemon
+        # WSGIApplicationGroup %{RESOURCE}
 
 </VirtualHost>
 

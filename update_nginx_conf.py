@@ -36,7 +36,31 @@ def create_nginx_conf(file_list, nginx_conf):
             tmp = nginx_conf.replace('[__server_name__]', i)
             f.write(tmp)
             f.close()
-            
+
+
+def create_wsgi_daemon_conf():
+    '''
+        Create wsgi daemon and underconstruction page
+    '''
+    f = open('wsgi-daemon-conf', "r")
+    wsgi_conf = f.read()
+
+    file_name = os.path.join('../', 'wsgi_daemon.conf')
+    f = open(file_name, "w")    
+    f.write(wsgi_conf)
+    f.close()      
+    
+    # Default (underconstruction page)
+    f = open('000-default-conf', "r")
+    wsgi_conf = f.read()
+
+    file_name = os.path.join('../', '000-default.conf')
+    f = open(file_name, "w")    
+    f.write(wsgi_conf)
+    f.close()      
+    
+    
+    
 
 def create_symlink(file_list):
     # get domain list
@@ -56,6 +80,21 @@ def create_symlink(file_list):
             if not os.path.islink(tmp):
                 os.symlink(os.path.join('../', file_name), tmp)            
 
+def create_symlink2_wsgi_daemon():
+    file_name = 'wsgi_daemon.conf'
+    if os.path.islink(file_name):
+        os.remove(file_name)
+        
+    os.symlink(os.path.join('../sites-available',file_name), file_name)                            
+    
+    # underconstruction
+    file_name = '000-default.conf'
+    if os.path.islink(file_name):
+        os.remove(file_name)
+        
+    os.symlink(os.path.join('../sites-available',file_name), file_name)                            
+    
+    
 # jalankan di sites-enabled, copy dari source code
 def create_symlink2(file_list_path):
     # get domain list
@@ -115,14 +154,16 @@ if __name__=='__main__':
 
     if m_len>=3:        
         if sys.argv[1]=='symlink':
-            create_symlink(sys.argv[2])        
+            create_symlink(sys.argv[2])         # deprecated
             print('Done...')
         else:
             print(sys.argv[1], sys.argv[2])        
             create_nginx_conf(sys.argv[1], sys.argv[2])
+            create_wsgi_daemon_conf()
             print('Done...')
     elif m_len>=2:        
         create_symlink2(sys.argv[1])        
+        create_symlink2_wsgi_daemon()
         print('Done...')
     else:
         help()
