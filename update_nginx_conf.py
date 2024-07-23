@@ -35,6 +35,7 @@ def create_nginx_conf(file_list, nginx_conf):
 
     f = open(nginx_conf, "r")
     nginx_conf = f.read()
+    print('nginx-conf', nginx_conf)
 
     # get domain list
     mlist = get_domain_list(file_list) 
@@ -46,12 +47,13 @@ def create_nginx_conf(file_list, nginx_conf):
             else:
                 file_name = os.path.join('../', i.replace('.lombokbaratkab.go.id',''))
 
-            print('Proses', i)
+            print('Proses', i, file_name)
                         
             f = open(file_name + '.conf', "w")
 
             tmp = nginx_conf.replace('[__server_name__]', i)            
 
+            f.write(tmp)
             f.close()
 
 
