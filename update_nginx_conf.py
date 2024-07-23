@@ -59,7 +59,7 @@ def create_wsgi_daemon_conf():
     '''
         Create wsgi daemon and underconstruction page
     '''
-    f = open('wsgi-daemon-conf', "r")
+    f = open('wsgi-daemon-conf.dat', "r")
     wsgi_conf = f.read()
 
     file_name = os.path.join('../', 'wsgi_daemon.conf')
@@ -68,7 +68,7 @@ def create_wsgi_daemon_conf():
     f.close()      
     
     # Default (underconstruction page)
-    f = open('000-default-conf', "r")
+    f = open('000-default-conf.dat', "r")
     wsgi_conf = f.read()
 
     file_name = os.path.join('../', '000-default.conf')
