@@ -21,7 +21,12 @@ def get_domain_list(file_list):
     return a.split('\n')
 
 def create_nginx_conf(file_list, nginx_conf):
-    group_name = file_list.split('-')
+    group_name = file_list.split('.')
+    if len(group_name) >= 2:
+        group_name = group_name[0]
+        # print('group name no ext', group_name)
+
+    group_name = group_name.split('-')
     if len(group_name) >= 3:
         group_name = group_name[len(group_name)-1]
     else:
