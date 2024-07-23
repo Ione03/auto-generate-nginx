@@ -3,12 +3,12 @@ server {
         client_max_body_size 50M;
 
         location /media/ {
-                alias /src/portal_kelurahan/media/;
+                alias /src/portal_puskesmas/media/;
                 client_max_body_size 50M;
         }
 
         location /static/ {
-                alias /src/portal_kelurahan/static/;
+                alias /src/portal_puskesmas/static/;
         }
 
         location / {

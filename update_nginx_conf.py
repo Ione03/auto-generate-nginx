@@ -58,9 +58,7 @@ def create_wsgi_daemon_conf():
     f = open(file_name, "w")    
     f.write(wsgi_conf)
     f.close()      
-    
-    
-    
+                
 
 def create_symlink(file_list):
     # get domain list
