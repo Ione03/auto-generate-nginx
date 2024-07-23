@@ -21,6 +21,13 @@ def get_domain_list(file_list):
     return a.split('\n')
 
 def create_nginx_conf(file_list, nginx_conf):
+    group_name = file_list.split('-')
+    if len(group_name) >= 3:
+        group_name = group_name[len(group_name)-1]
+    else:
+        group_name = ''
+        # print('group name', group_name)
+
     f = open(nginx_conf, "r")
     nginx_conf = f.read()
 
@@ -29,12 +36,17 @@ def create_nginx_conf(file_list, nginx_conf):
 
     for i in mlist:
         if i:
-            file_name = os.path.join('../', i.replace('.lombokbaratkab.go.id',''))
+            if group_name:
+                file_name = os.path.join('../', group_name + '-' + i.replace('.lombokbaratkab.go.id',''))
+            else:
+                file_name = os.path.join('../', i.replace('.lombokbaratkab.go.id',''))
+
             print('Proses', i)
-            
+                        
             f = open(file_name + '.conf', "w")
-            tmp = nginx_conf.replace('[__server_name__]', i)
-            f.write(tmp)
+
+            tmp = nginx_conf.replace('[__server_name__]', i)            
+
             f.close()
 
 
