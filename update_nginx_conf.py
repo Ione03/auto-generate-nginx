@@ -35,7 +35,7 @@ def create_nginx_conf(file_list, nginx_conf):
 
     f = open(nginx_conf, "r")
     nginx_conf = f.read()
-    print('nginx-conf', nginx_conf)
+    # print('nginx-conf', nginx_conf)
 
     # get domain list
     mlist = get_domain_list(file_list) 
@@ -54,6 +54,7 @@ def create_nginx_conf(file_list, nginx_conf):
             tmp = nginx_conf.replace('[__server_name__]', i)            
 
             f.write(tmp)
+
             f.close()
 
 
@@ -78,7 +79,6 @@ def create_wsgi_daemon_conf():
     f.write(wsgi_conf)
     f.close()      
                 
-
 def create_symlink(file_list):
     # get domain list
     mlist = get_domain_list(file_list) 
