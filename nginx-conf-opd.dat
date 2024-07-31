@@ -1,5 +1,5 @@
 server {
-        server_name [__server_name__];        
+        server_name [__server_name__];
         client_max_body_size 50M;
 
         location /media/ {
